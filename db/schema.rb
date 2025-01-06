@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_26_093048) do
+ActiveRecord::Schema.define(version: 2025_01_06_094208) do
 
   create_table "reservations", force: :cascade do |t|
     t.date "checkin"
@@ -18,6 +18,10 @@ ActiveRecord::Schema.define(version: 2024_12_26_093048) do
     t.integer "person"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "room_id", null: false
+    t.integer "user_id", null: false
+    t.index ["room_id"], name: "index_reservations_on_room_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -28,16 +32,24 @@ ActiveRecord::Schema.define(version: 2024_12_26_093048) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
     t.string "name"
-    t.string "email"
-    t.string "password"
     t.string "icon"
     t.string "introduce"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reservations", "rooms"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "rooms", "users"
 end

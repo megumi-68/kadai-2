@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
   root 'top#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  devise_for :users
+  resources :users, only: [:edit, :update, :show]
+  resources :rooms do
+    resources :reservations, only: [:create]
+  end
+
+  resources :reservations, only: [:index, :show] do
+    member do
+      get :confirm
+    end
+  end
 end
