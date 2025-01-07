@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_06_094208) do
+ActiveRecord::Schema.define(version: 2025_01_07_063849) do
 
   create_table "reservations", force: :cascade do |t|
     t.date "checkin"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2025_01_06_094208) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "reservations", "rooms"
+  add_foreign_key "reservations", "rooms", on_delete: :cascade
   add_foreign_key "reservations", "users"
   add_foreign_key "rooms", "users"
 end
