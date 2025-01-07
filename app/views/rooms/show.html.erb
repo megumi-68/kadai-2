@@ -1,0 +1,30 @@
+<h1><%= @room.name %></h1>
+<p><%= @room.detail %></p>
+<p>宿泊料金：<%= number_to_currency(@room.price) %> / 日</p>
+<p>住所：<%= @room.address %></p>
+<p>作成日：<%= @room.created_at.strftime("%Y/%m/%d") %></p>
+
+<%= link_to '施設一覧に戻る', rooms_path %>
+
+<% if user_signed_in? %>
+  <%= form_with(model: Reservation.new, url: room_reservations_path(@room), local: true) do |f| %>
+    <div>
+      <%= f.label :checkin, "チェックイン日" %>
+      <%= f.date_field :checkin, min: Date.today %>
+    </div>
+
+    <div>
+      <%= f.label :checkout, "チェックアウト日" %>
+      <%= f.date_field :checkout, min: Date.today %>
+    </div>
+
+    <div>
+      <%= f.label :person, "人数" %>
+      <%= f.number_field :person, min: 1 %>
+    </div>
+
+    <div>
+      <%= f.submit '確認画面へ' %>
+    </div>
+  <% end %>
+<% end %>

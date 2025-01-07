@@ -1,0 +1,19 @@
+<h1>登録済み一覧</h1>
+<%= link_to '新規施設作成', new_room_path %>
+<% if @rooms.any? %>
+  <ul>
+    <% @rooms.each do |room| %>
+      <li>
+        <strong><%= link_to room.name, room_path(room) %></strong><br />
+        <%= image_tag room.image_url if room.icon? %><br />
+        <%= room.detail %><br />
+        宿泊料金：<%= number_to_currency(room.price) %><br />
+        住所：<%= room.address %><br />
+        <%= link_to '施設編集', edit_room_path(room) %> |
+        <%= link_to '施設削除', room_path(room), method: :delete, data: { confirm: '施設を削除しますか？' } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>まだ施設が登録されていません。</p>
+<% end %>

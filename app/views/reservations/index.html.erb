@@ -1,0 +1,30 @@
+<h1>予約済み一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <%# <th>施設画像</th> %>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>合計料金</th>
+      <th>チェックイン日</th>
+      <th>チェックアウト日</th>
+      <th>予約確定日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <%# <td><%= image_tag reservation.room.image_url if reservation.room.image? %>
+        <td><%= reservation.room.name %></td>
+        <td><%= reservation.room.detail %></td>
+        <td><%= number_to_currency(reservation.room.price) %></td>
+        <td><%= reservation.checkin.strftime("%Y/%m/%d") %></td>
+        <td><%= reservation.checkout.strftime("%Y/%m/%d") %></td>
+        <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '施設一覧に戻る', rooms_path %>

@@ -1,0 +1,11 @@
+<h1>予約確認</h1>
+
+<p>施設名：<%= @reservation.room.name %></p>
+<p>チェックイン日：<%= @reservation.checkin.strftime("%Y/%m/%d") %></p>
+<p>チェックアウト日：<%= @reservation.checkout.strftime("%Y/%m/%d") %></p>
+<p>宿泊日数：<%= @reservation.stay_duration %> 日</p>
+<p>人数：<%= @reservation.person %> 人</p>
+<p>支払い金額：<%= number_to_currency(@price) %></p>
+
+<%= link_to '予約を確定する', reservation_path(reservation), method: :patch, class: 'btn btn-primary' %> |
+<%= link_to 'キャンセル', room_path(@room), class: 'btn btn-secondary' %>
