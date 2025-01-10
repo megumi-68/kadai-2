@@ -2,6 +2,15 @@
   <h1 class="mb-4">アカウント情報の編集</h1>
 
   <%= form_for(@user, url: user_path(@user), html: { class: "needs-validation" }) do |f| %>
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <div class="mb-3">
       <%= f.label :email, "メールアドレス", class: "form-label" %>
       <%= f.email_field :email, class: "form-control" %>

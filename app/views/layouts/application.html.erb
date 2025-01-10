@@ -17,6 +17,9 @@
       <%= render 'shared/navbar' %>
     </header>
     <main>
+    <!-- deivseのフラッシュメッセージを表示 -->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
     </main>
     <footer class="Footer">

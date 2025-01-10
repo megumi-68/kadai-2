@@ -21,7 +21,7 @@
           </td>
           <td><strong><%= reservation.room.name %></strong></td>
           <td><%= truncate(reservation.room.detail, length: 50) %></td>
-          <td><%= number_to_currency(reservation.total_price, unit: "¥", strip_insignificant_zeros: true) %></td>
+          <td><%= number_to_currency(reservation.total_price, strip_insignificant_zeros: true) %></td>
           <td><%= reservation.checkin.strftime("%Y/%m/%d") %></td>
           <td><%= reservation.checkout.strftime("%Y/%m/%d") %></td>
           <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>

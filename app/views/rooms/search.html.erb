@@ -10,7 +10,7 @@
               <h5 class="card-title"><%= link_to room.name, room_path(room) %></h5>
               <p class="card-text">
                 <strong>施設詳細：</strong><%= truncate(room.detail, length: 50) %><br>
-                <strong>宿泊料金：</strong><%= number_to_currency(room.price, unit: "¥", strip_insignificant_zeros: true) %><br>
+                <strong>宿泊料金：</strong><%= number_to_currency(room.price, strip_insignificant_zeros: true) %><br>
                 <strong>住所：</strong><%= room.address %>
               </p>
             </div>

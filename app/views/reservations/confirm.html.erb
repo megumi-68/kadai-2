@@ -1,11 +1,39 @@
-<h1>予約確認</h1>
+<div class="container my-5">
+  <h1 class="mb-4">予約確認</h1>
 
-<p>施設名：<%= @reservation.room.name %></p>
-<p>チェックイン日：<%= @reservation.checkin.strftime("%Y/%m/%d") %></p>
-<p>チェックアウト日：<%= @reservation.checkout.strftime("%Y/%m/%d") %></p>
-<p>宿泊日数：<%= @reservation.stay_duration %> 日</p>
-<p>人数：<%= @reservation.person %> 人</p>
-<p>支払い金額：<%= number_to_currency(@price) %></p>
+  <% if @reservation.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to '予約を確定する', reservation_path(reservation), method: :patch, class: 'btn btn-primary' %> |
-<%= link_to 'キャンセル', room_path(@room), class: 'btn btn-secondary' %>
+  <div class="mb-3">
+    <p><strong>チェックイン日:</strong> <%= @reservation.checkin.strftime("%Y/%m/%d") if @reservation.checkin %></p>
+  </div>
+  <div class="mb-3">
+    <p><strong>チェックアウト日:</strong> <%= @reservation.checkout.strftime("%Y/%m/%d") if @reservation.checkout %></p>
+  </div>
+  <div class="mb-3">
+    <p><strong>人数:</strong> <%= @reservation.person %> 人</p>
+  </div>
+  <div class="mb-3">
+    <p><strong>宿泊日数:</strong> <%= @reservation.stay_duration %> 日</p>
+  </div>
+  <div class="mb-3">
+    <p><strong>合計金額:</strong> <%= number_to_currency(@reservation.total_price, strip_insignificant_zeros: true) %></p>
+  </div>
+
+  <%= form_with(model: @reservation, url: room_reservations_path(@room), method: :post, local: true) do |f| %>
+    <%= f.hidden_field :checkin, value: @reservation.checkin %>
+    <%= f.hidden_field :checkout, value: @reservation.checkout %>
+    <%= f.hidden_field :person, value: @reservation.person %>
+    <div class="d-flex gap-2">
+      <%= f.submit '予約を確定する', class: 'btn btn-primary' %>
+      <%= link_to 'キャンセル', room_path(@room), class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+</div>

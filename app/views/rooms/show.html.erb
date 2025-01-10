@@ -4,7 +4,7 @@
     <div class="col-md-8">
       <%= image_tag(@room.icon_or_default, class: "img-fluid mb-3 rounded", alt: @room.name) %>
       <p><strong>施設詳細：</strong><%= @room.detail %></p>
-      <p><strong>宿泊料金：</strong><%= number_to_currency(@room.price, unit: "¥", strip_insignificant_zeros: true) %> / 日</p>
+      <p><strong>宿泊料金：</strong><%= number_to_currency(@room.price, strip_insignificant_zeros: true) %> / 日</p>
       <p><strong>住所：</strong><%= @room.address %></p>
       <p><strong>作成日：</strong><%= @room.created_at.strftime("%Y/%m/%d") %></p>
     </div>
@@ -13,10 +13,10 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">予約</h5>
-            <%= form_with(model: Reservation.new, url: confirm_room_reservations_path(@room), method: :get, local: true, class: "needs-validation") do |f| %>
+            <%= form_with(model: Reservation.new, url: confirm_room_reservations_path(@room), method: :get, local: true, class: "needs-validation", id: "reservationForm") do |f| %>
               <div class="mb-3">
                 <%= f.label :checkin, "チェックイン日:", class: "form-label" %>
-                <%= f.date_field :checkin, min: Date.today, class: "form-control" %>
+                <%= f.date_field :checkin, min: Date.today, class: "form-control", id: "checkinDate"%>
               </div>
               <div class="mb-3">
                 <%= f.label :checkout, "チェックアウト日:", class: "form-label" %>
@@ -29,6 +29,17 @@
               <div class="d-grid">
                 <%= f.submit '予約する', class: "btn btn-primary" %>
               </div>
+              <script>
+                  document.getElementById("reservationForm").onsubmit = function(event) {
+                    const checkinDate = new Date(document.getElementById("checkinDate").value);
+                    const today = new Date();
+                    
+                    if (checkinDate < today) {
+                      alert("チェックイン日は今日以降の日付を選択してください。");
+                      event.preventDefault(); // フォーム送信を防ぐ
+                    }
+                  };
+              </script>
             <% end %>
           </div>
         </div>

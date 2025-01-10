@@ -3,7 +3,6 @@
   <%= form_with model: @room, local: true, class: "needs-validation" do |f| %>
     <% if @room.errors.any? %>
       <div class="alert alert-danger">
-        <h4 class="alert-heading"><%= pluralize(@room.errors.count, "error") %> prevented this room from being saved:</h4>
         <ul>
           <% @room.errors.full_messages.each do |message| %>
             <li><%= message %></li>
