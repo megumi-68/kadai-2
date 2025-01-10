@@ -2,56 +2,83 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: var(--bs-font-sans-serif);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 header {
-  display: block;
-  unicode-bidi: isolate;
-}
-
-.navbar {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-}
-
-.FirstView {
-  background-image: url(/assets/home/cover-lg.jpg);
-  background-size: cover;
-  background-position: 50%;
-  height: 750px;
-  margin-bottom: 180px;
-  padding-top: 80px;
-  width: 100%;
-}
-
-.FirstView__title {
-  color: #fff;
-  font-family: Lato, sans-serif;
-  font-size: 84px;
-  font-weight: 400;
-  line-height: 101px;
-  margin-bottom: 48px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
   text-align: center;
-  word-break: keep-all;
 }
 
-.Footer {
-  align-items: center;
-  background-color: #1c1d3b;
+h1 {
+  font-size: 2.5em;
+  margin: 20px 0;
+}
+
+.search-bar {
+  margin: 20px auto;
+  max-width: 600px;
   display: flex;
-  height: 465px;
+  justify-content: center;
+}
+
+.search-bar input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  background-color: #e74c3c;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+.search-bar input[type="submit"]:hover {
+  background-color: #c0392b;
+}
+
+.recommendation-section {
+  padding: 40px 0;
+  background-color: #ecf0f1;
+  text-align: center;
+}
+
+.recommendation-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.recommendation-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.recommendation-card {
+  width: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-card img {
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+  text-align: center;
 }

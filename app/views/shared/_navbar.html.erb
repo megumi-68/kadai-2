@@ -1,35 +1,29 @@
 <% if user_signed_in? %>
   <div>
-    <%= image_tag current_user.icon.url, alt: 'ユーザーアイコン' if current_user.icon? %>
-    <span><%= current_user.email %></span>
-    <%# <%= link_to 'アカウント', user_path(current_user) %>
-    <%# <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <nav class="navbar Navbar">
       <div class="container-fluid">
-        <a href="/"><img class="Navbar__logo" alt="サイトロゴ" src="/assets/common/logo.png"></a>
+        <%= link_to image_tag("logo.png", size: "250x50"), root_path, class: "Navbar__logo" %>
 
           <div class="dropdown">
             <div class="d-flex align-items-center NavProfile" id="dropdown-button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img class="NavProfile__avatar" alt="アバター" src="/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png">
-
-              <span class="nav-item d-sm-inline-block d-none NavProfile__name">
-                テスト
+              <% if current_user.icon.attached? %>
+                <%= image_tag current_user.icon.variant(resize_to_fill: [50, 50]), class: "navbar-profile-image" %>
+              <% else %>
+                <%= image_tag "default_icon.jpg", size: "50x50", class: "navbar-profile-image" %>
+              <% end %>
+              <span class="navbar-profile-name ms-2">
+                <%= current_user.name %> ▼
               </span>
-
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down NavProfile__icon" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
-              </svg>
             </div>
 
             <ul class="dropdown-menu DropdownMenu" aria-labelledby="dropdown-button">
               <li class="DropdownMenu__item">
-                <a href="/rooms/new">施設の新規登録</a>
+                <%= link_to '施設の新規登録', new_room_path %>
               </li>
 
               <hr class="DropdownMenu__hr">
-
               <li class="DropdownMenu__item">
-                <a href="/reservations">予約済み一覧</a>
+                <%= link_to '予約済み一覧', reservations_path %>
               </li>
 
               <li class="DropdownMenu__item DropdownMenu__item--middle">
