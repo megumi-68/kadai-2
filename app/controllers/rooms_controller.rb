@@ -7,6 +7,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    # rooms#showにて使用
   end
 
   def new
