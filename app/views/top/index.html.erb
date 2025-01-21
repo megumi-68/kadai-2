@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>【Rails実践課題②】宿泊予約アプリ</title>
+  </head>
+<body>
+  <div class="search-bar">
+    <%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+      <div>
+        <%= text_field_tag :query, params[:query], placeholder: "キーワードを入力" %>
+        <%= submit_tag "検索", class: "btn" %>
+      </div>
+    <% end %>  
+  </div>
+  <section class="recommendation-section">
+    <h2 class="RecommendAreaSection__title">
+      おすすめのエリア
+    </h2>
+
+    <div class="recommendation-cards">
+      <div class="recommendation-card">
+      <span>東京</span>
+      <%= link_to image_tag("tokyo.jpg"), area_search_rooms_path(area: "東京") %>
+      </div>
+      <div class="recommendation-card">
+      <span>大阪</span>
+      <%= link_to image_tag("osaka.jpg"), area_search_rooms_path(area: "大阪") %>
+      </div>
+      <div class="recommendation-card">
+      <span>京都</span>
+      <%= link_to image_tag("kyoto.jpg"), area_search_rooms_path(area: "京都") %>
+      </div>
+      <div class="recommendation-card">
+      <span>札幌</span>
+      <%= link_to image_tag("sapporo.jpg"), area_search_rooms_path(area: "札幌") %>
+      </div>
+    </div>
+  </section>  
+</body>
+</html>

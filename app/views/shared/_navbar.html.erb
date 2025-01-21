@@ -1,0 +1,52 @@
+<% if user_signed_in? %>
+  <div>
+    <nav class="navbar Navbar">
+      <div class="container-fluid">
+        <%= link_to image_tag("logo.png", size: "250x50"), root_path, class: "Navbar__logo" %>
+
+          <div class="dropdown">
+            <div class="d-flex align-items-center NavProfile" id="dropdown-button" data-bs-toggle="dropdown" aria-expanded="false">
+              <% if current_user.icon.attached? %>
+                <%= image_tag current_user.icon.variant(resize_to_fill: [50, 50]), class: "navbar-profile-image" %>
+              <% else %>
+                <%= image_tag "default_icon.jpg", size: "50x50", class: "navbar-profile-image" %>
+              <% end %>
+              <span class="navbar-profile-name ms-2">
+                <%= current_user.name %> ▼
+              </span>
+            </div>
+
+            <ul class="dropdown-menu DropdownMenu" aria-labelledby="dropdown-button">
+              <li class="DropdownMenu__item">
+                <%= link_to '施設の新規登録', new_room_path %>
+              </li>
+
+              <hr class="DropdownMenu__hr">
+              <li class="DropdownMenu__item">
+                <%= link_to '予約済み一覧', reservations_path %>
+              </li>
+
+              <li class="DropdownMenu__item DropdownMenu__item--middle">
+                <%= link_to '登録済み一覧', rooms_path %>
+              </li>
+
+              <li class="DropdownMenu__item">
+                <%= link_to 'アカウント', user_path(current_user) %>
+              </li>
+
+              <hr class="DropdownMenu__hr">
+
+              <li class="DropdownMenu__item">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </nav>
+  </div>
+<% else %>
+  <div>
+    <%= link_to 'ログイン', new_user_session_path %> |
+    <%= link_to '新規登録', new_user_registration_path %>
+  </div>
+<% end %>

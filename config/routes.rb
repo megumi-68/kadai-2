@@ -1,3 +1,25 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'top#index'
+
+  devise_for :users
+  resources :users, only: [:edit, :update, :show] do
+    member do
+      get 'edit_account'
+      get 'edit_profile'
+    end
+  end
+  
+  resources :rooms do
+    collection do
+      get :search
+      get :area_search
+    end
+    resources :reservations, only: [:new, :create, :index, :show] do
+      collection do
+        get :confirm
+      end
+    end
+  end
+
+  resources :reservations, only: [:index, :show]
 end

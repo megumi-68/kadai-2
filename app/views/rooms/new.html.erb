@@ -1,0 +1,48 @@
+<div class="container my-5">
+  <h1 class="mb-4">新規施設登録</h1>
+
+  <%= form_with model: @room, local: true, class: "needs-validation" do |f| %>
+    <% if @room.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% @room.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= f.label :icon, '施設画像', class: "form-label" %>
+      <%= f.file_field :icon, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :name, "施設名", class: "form-label" %>
+      <%= f.text_field :name, class: "form-control", size: 50 %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :detail, "施設紹介", class: "form-label" %>
+      <%= f.text_area :detail, class: "form-control", rows: 4 %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :price, "宿泊料金（1泊あたり）", class: "form-label" %>
+      <%= f.number_field :price, min: 1, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :address, "住所", class: "form-label" %>
+      <%= f.text_field :address, class: "form-control", size: 50 %>
+    </div>
+
+    <div class="d-grid">
+      <%= f.submit "施設登録", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="mt-3">
+    <%= link_to '登録済み施設一覧に戻る', rooms_path, class: "btn btn-outline-secondary" %>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container my-5">
+  <h1 class="mb-4">予約済み一覧</h1>
+  
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">施設画像</th>
+        <th scope="col">施設名</th>
+        <th scope="col">紹介文</th>
+        <th scope="col">合計料金</th>
+        <th scope="col">チェックイン日</th>
+        <th scope="col">チェックアウト日</th>
+        <th scope="col">予約確定日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td>
+            <%= image_tag(reservation.room.icon_or_default, class: "img-fluid rounded", style: "max-width: 150px; height: auto;") %>
+          </td>
+          <td><strong><%= reservation.room.name %></strong></td>
+          <td><%= truncate(reservation.room.detail, length: 50) %></td>
+          <td><%= number_to_currency(reservation.total_price, strip_insignificant_zeros: true) %></td>
+          <td><%= reservation.checkin.strftime("%Y/%m/%d") %></td>
+          <td><%= reservation.checkout.strftime("%Y/%m/%d") %></td>
+          <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

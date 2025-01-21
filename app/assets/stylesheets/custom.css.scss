@@ -1,0 +1,59 @@
+.navbar {
+  background-color: #2c3e50;
+  padding: 10px 20px;
+  color: white;
+}
+
+.Navbar__logo {
+  width: 221px;
+}
+
+.navbar-profile-image {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navbar-profile-name {
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbar .DropdownMenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar .DropdownMenu__item {
+  padding: 10px;
+}
+
+.navbar .DropdownMenu__item a {
+  color: black;
+  text-decoration: none;
+}
+
+.navbar .DropdownMenu__item a:hover {
+  text-decoration: underline;
+}
+
+.navbar .DropdownMenu__hr {
+  border: 0;
+  border-top: 1px solid white;
+  margin: 5px 0;
+}
+
+header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
