@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'top#index'
 
   devise_for :users
-  resources :users, only: [:edit, :update, :show] do
+  resources :users, only: [:update, :show] do
     member do
       get 'edit_account'
       get 'edit_profile'

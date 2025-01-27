@@ -11,6 +11,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       redirect_to reservations_path, notice: '予約が確定しました。'
     else
+      flash.now[:alert] = '予約に失敗しました。内容をご確認ください。'
       render :confirm
     end
   end
